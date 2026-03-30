@@ -1,0 +1,12 @@
+.title-bar {
+  border: 1px solid #dde4ee;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 14px;
+}
+
+.title-text {
+  margin: 0;
+  font-size: 26px;
+  color: #0f172a;
+}

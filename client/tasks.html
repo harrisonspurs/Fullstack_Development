@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasks - Student Study Helper</title>
+    <link rel="stylesheet" href="/src/pages.css" />
+  </head>
+  <body>
+    <main class="page">
+      <h1>Tasks</h1>
+      <p>Add and track your study tasks here.</p>
+
+      <section class="page-panel">
+        <h2>Add Task</h2>
+        <div class="row">
+          <input id="task-input" type="text" placeholder="Type a task..." />
+          <button id="add-task-button" type="button">Add Task</button>
+        </div>
+        <p id="task-message" class="message"></p>
+      </section>
+
+      <section class="page-panel">
+        <h2>My Tasks</h2>
+        <ul id="tasks-list" class="notes-list"></ul>
+      </section>
+
+      <a class="back-link" href="/index.html">Back to Dashboard</a>
+    </main>
+    <script type="module" src="/src/tasks.js"></script>
+  </body>
+</html>

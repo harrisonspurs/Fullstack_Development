@@ -1,0 +1,40 @@
+:root {
+  font-family: Arial, sans-serif;
+  color: #1f2937;
+}
+
+body {
+  margin: 0;
+  background: #f3f6fb;
+}
+
+#app {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 0 16px 24px;
+}
+
+#content-div {
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.panel {
+  border: 1px solid #dde4ee;
+  border-radius: 12px;
+  padding: 14px;
+  background: #ffffff;
+}
+
+.panel h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+  #app {
+    margin-top: 12px;
+    padding: 0 10px 20px;
+  }
+}
