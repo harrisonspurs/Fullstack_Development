@@ -1,115 +1,50 @@
 import express from "express";
+import dotenv from "dotenv";
+import Database from "better-sqlite3";
 
-// basic express setup
+dotenv.config();
 const app = express();
 const port = 3000;
+
 app.use(express.json());
 
-// in-memory list for now (can move to a real DB later)
-const notes = [];
-const tasks = [];
-
-// get all notes
-app.get("/notes", (req, res) => {
-  res.json({ success: true, data: notes });
+// cors stuff
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
 });
 
-// quick values for dashboard cards
-app.get("/dashboard-summary", (req, res) => {
-  res.json({
-    success: true,
-    data: {
-      notesCount: notes.length,
-      tasksCount: tasks.length,
-      sessionsCount: 0,
-      focusMinutes: 0,
-    },
-  });
+const db = new Database("sessions.db");
+
+// make table if not there
+db.prepare(
+  `CREATE TABLE IF NOT EXISTS sessions(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date TEXT NOT NULL,
+    duration INTEGER NOT NULL,
+    focused INTEGER NOT NULL,
+    score REAL NOT NULL
+  )`,
+).run();
+
+app.post("/addSession", (req, res) => {
+  const { date, duration, focused, score } = req.body;
+
+  db.prepare(`
+    INSERT INTO sessions (date, duration, focused, score)
+    VALUES (?, ?, ?, ?)
+  `).run(date, duration, focused, score);
+
+  res.json({ success: true, data: req.body });
 });
 
-// get all tasks
-app.get("/tasks", (req, res) => {
-  res.json({ success: true, data: tasks });
+app.get("/getSessions", (req, res) => {
+  const sessions = db.prepare("SELECT * FROM sessions").all();
+  res.json({ success: true, data: sessions });
 });
 
-// add a new task
-app.post("/tasks", (req, res) => {
-  const text = req.body?.text?.trim();
-  if (!text) {
-    res.status(400).json({ success: false, error: "text is required" });
-    return;
-  }
-
-  const task = {
-    id: Date.now(),
-    text,
-    done: false,
-  };
-
-  tasks.push(task);
-  res.status(201).json({ success: true, data: task });
-});
-
-// update done state of task
-app.patch("/tasks/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const task = tasks.find((item) => item.id === id);
-
-  if (!task) {
-    res.status(404).json({ success: false, error: "task not found" });
-    return;
-  }
-
-  task.done = Boolean(req.body?.done);
-  res.json({ success: true, data: task });
-});
-
-// delete a task by id
-app.delete("/tasks/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const index = tasks.findIndex((item) => item.id === id);
-
-  if (index === -1) {
-    res.status(404).json({ success: false, error: "task not found" });
-    return;
-  }
-
-  tasks.splice(index, 1);
-  res.json({ success: true });
-});
-
-// add a new note
-app.post("/notes", (req, res) => {
-  const text = req.body?.text?.trim();
-  if (!text) {
-    res.status(400).json({ success: false, error: "text is required" });
-    return;
-  }
-
-  const note = {
-    id: Date.now(),
-    text,
-  };
-
-  notes.push(note);
-  res.status(201).json({ success: true, data: note });
-});
-
-// delete a note by its id
-app.delete("/notes/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const index = notes.findIndex((note) => note.id === id);
-
-  if (index === -1) {
-    res.status(404).json({ success: false, error: "note not found" });
-    return;
-  }
-
-  notes.splice(index, 1);
-  res.json({ success: true });
-});
-
-// start server
 app.listen(port, () => {
-  console.log(`server is running on http://localhost:${port}`);
+  console.log(`server running on ${port}`);
 });

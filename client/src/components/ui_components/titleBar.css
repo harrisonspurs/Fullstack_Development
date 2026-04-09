@@ -1,12 +1,27 @@
 .title-bar {
-  border: 1px solid #dde4ee;
-  border-radius: 12px;
-  background: #ffffff;
-  padding: 14px;
+  background: #3b82f6;
+  color: white;
+  padding: 16px 24px;
+  margin-bottom: 24px;
 }
 
-.title-text {
-  margin: 0;
-  font-size: 26px;
-  color: #0f172a;
+.title-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.title-bar h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+

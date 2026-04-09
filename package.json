@@ -1,6 +1,8 @@
 {
-  "name": "student-study-helper",
-  "private": true,
+  "name": "study-focus-tracker",
+  "version": "1.0.0",
+  "description": "Full-stack AI Study Focus Tracker Dashboard",
+  "type": "module",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd server && node index.js",
