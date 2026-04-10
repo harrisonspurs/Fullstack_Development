@@ -29,22 +29,31 @@ db.prepare(
   )`,
 ).run();
 
+console.log("database ready");
+
 app.post("/addSession", (req, res) => {
   const { date, duration, focused, score } = req.body;
 
+  console.log("adding session:", { date, duration, focused, score });
+
+  // insert into db
   db.prepare(`
     INSERT INTO sessions (date, duration, focused, score)
     VALUES (?, ?, ?, ?)
   `).run(date, duration, focused, score);
 
+  console.log("session added");
+
   res.json({ success: true, data: req.body });
 });
 
 app.get("/getSessions", (req, res) => {
+  console.log("getting all sessions");
   const sessions = db.prepare("SELECT * FROM sessions").all();
+  console.log("found", sessions.length, "sessions");
   res.json({ success: true, data: sessions });
 });
 
 app.listen(port, () => {
-  console.log(`server running on ${port}`);
+  console.log(`server running on port ${port}`);
 });

@@ -8,7 +8,8 @@ export function createSessionTile(session) {
   const focusPercentage = session.score;
   const durationMinutes = Math.round(session.duration / 60);
   const focusedMinutes = Math.round(session.focused / 60);
-  const streakPercentage = focusedMinutes > 0 ? (focusedMinutes / durationMinutes) * 100 : 0;
+  // const streakPercentage = focusedMinutes > 0 ? (focusedMinutes / durationMinutes) * 100 : 0;
+  const streakPercentage = (focusedMinutes / durationMinutes) * 100;
 
   tile.innerHTML = `
     <div class="session-tile-header">
@@ -65,11 +66,15 @@ export function createSessionsList(sessions) {
 }
 
 function formatDate(dateString) {
+  // format the date string to readable format
   const date = new Date(dateString + "T00:00:00");
-  return date.toLocaleDateString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  const day = days[date.getDay()];
+  const month = months[date.getMonth()];
+  const dayNum = date.getDate();
+  const year = date.getFullYear();
+
+  return `${day}, ${month} ${dayNum}, ${year}`;
 }

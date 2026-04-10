@@ -63,10 +63,13 @@ export function initSessionInput(onSessionAdded) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    // get form values
     const date = document.getElementById("session-date").value;
     const duration = parseInt(document.getElementById("session-duration").value) * 60;
     const focused = parseInt(document.getElementById("session-focused").value) * 60;
     const score = parseFloat(document.getElementById("session-score").value);
+
+    console.log("submitting form with:", { date, duration, focused, score });
 
     try {
       await addSession(date, duration, focused, score);
@@ -78,6 +81,7 @@ export function initSessionInput(onSessionAdded) {
         messageDiv.textContent = "";
       }, 2000);
     } catch (error) {
+      console.error("submit error:", error);
       messageDiv.textContent = "Error adding session";
       messageDiv.className = "form-message error";
     }

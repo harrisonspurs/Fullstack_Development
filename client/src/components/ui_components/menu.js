@@ -9,6 +9,7 @@ export function initMenu() {
     <div class="menu-content">
       <ul class="menu-list">
         <li><a href="#" class="menu-link" data-section="sessions">Sessions</a></li>
+        <li><a href="#" class="menu-link" data-section="import">Import Session</a></li>
         <li><a href="#" class="menu-link" data-section="about">About</a></li>
       </ul>
       <button id="close-menu" class="close-menu">Close</button>
