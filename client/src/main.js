@@ -1,10 +1,10 @@
 import "./style.css";
 import { initTitleBar } from "./components/ui_components/titleBar.js";
 import { initMenu, toggleMenu, closeMenu } from "./components/ui_components/menu.js";
-import { initSessionInput } from "./components/ui_components/sessionInput.js";
 import { initImportSessions } from "./importSessions.js";
 import { createSessionsList } from "./components/ui_components/sessionTile.js";
 import { createStatsDisplay } from "./components/ui_components/sessionStats.js";
+import { createChartDisplay } from "./chartsDisplay.js";
 import { getSessions } from "./apiRouter.js";
 
 async function initApp() {
@@ -21,9 +21,6 @@ async function initApp() {
   contentDiv.id = "content-div";
   contentDiv.className = "container";
   app.appendChild(contentDiv);
-
-  const sessionInput = initSessionInput(loadSessions);
-  contentDiv.appendChild(sessionInput);
 
   const importSection = initImportSessions(loadSessions);
   importSection.id = "import-section";
@@ -53,6 +50,12 @@ async function loadSessions() {
     const statsDisplay = createStatsDisplay(sessions);
     if (statsDisplay) {
       sessionsContainer.appendChild(statsDisplay);
+    }
+
+    // add chart
+    const chartDisplay = createChartDisplay(sessions);
+    if (chartDisplay) {
+      sessionsContainer.appendChild(chartDisplay);
     }
 
     const sessionsList = createSessionsList(sessions);
@@ -90,32 +93,27 @@ function setupEventListeners() {
 }
 
 function handleNavigation(section) {
-  const sessionInput = document.querySelector(".session-input");
   const importSection = document.getElementById("import-section");
   const sessionsContainer = document.getElementById("sessions-container");
 
-  // hide everything first
-  // sessionInput.style.display = "none";
-  // importSection.style.display = "none";
-  // sessionsContainer.style.display = "none";
-
   switch (section) {
     case "sessions":
-      sessionInput.style.display = "block";
       importSection.style.display = "none";
       sessionsContainer.style.display = "block";
       loadSessions();
       break;
     case "import":
-      sessionInput.style.display = "none";
       importSection.style.display = "block";
       sessionsContainer.style.display = "none";
+      break;
+    case "guide":
+      importSection.style.display = "none";
+      showGuide();
       break;
     case "about":
       showAbout();
       break;
     default:
-      sessionInput.style.display = "block";
       importSection.style.display = "none";
       sessionsContainer.style.display = "block";
       loadSessions();
@@ -123,16 +121,59 @@ function handleNavigation(section) {
 }
 
 function showAbout() {
-  const sessionInput = document.querySelector(".session-input");
   const importSection = document.getElementById("import-section");
   const sessionsContainer = document.getElementById("sessions-container");
 
-  sessionInput.style.display = "none";
   importSection.style.display = "none";
   sessionsContainer.innerHTML = `
     <div class="card" style="margin-top: 24px;">
       <h2>About</h2>
       <p>Study Focus Tracker helps track your study sessions and focus time.</p>
+      <button class="button button-primary" onclick="location.reload()">Back</button>
+    </div>
+  `;
+}
+
+function showGuide() {
+  const importSection = document.getElementById("import-section");
+  const sessionsContainer = document.getElementById("sessions-container");
+
+  importSection.style.display = "none";
+  sessionsContainer.innerHTML = `
+    <div class="card" style="margin-top: 24px;">
+      <h2>How to Use</h2>
+
+      <h3>Getting Started</h3>
+      <p>Study Focus Tracker works with the AI Study Focus Tracker to import and display your study sessions.</p>
+
+      <h3>Step 1: Run the AI Tracker</h3>
+      <p>The AI Study Focus Tracker monitors your study sessions in real-time, detecting focus levels through webcam analysis.</p>
+      <p>When a session ends, the tracker saves a JSON file with your session data.</p>
+
+      <h3>Step 2: Copy Session JSON</h3>
+      <p>Find the session JSON file from your AI tracker output and copy the data.</p>
+      <p>The JSON contains:</p>
+      <ul style="margin: 10px 0 10px 20px;">
+        <li><strong>date:</strong> Session date (YYYY-MM-DD)</li>
+        <li><strong>duration_seconds:</strong> Total session time</li>
+        <li><strong>focused_seconds:</strong> Time spent focused</li>
+        <li><strong>focus_score:</strong> Overall focus percentage (0-100)</li>
+      </ul>
+
+      <h3>Step 3: Import into Tracker</h3>
+      <p>Click the "Import Session" menu item, paste your JSON data, and click "Import Session".</p>
+      <p>Your session will be stored and automatically appear in the Sessions view.</p>
+
+      <h3>Step 4: View Analytics</h3>
+      <p>Once imported, you'll see:</p>
+      <ul style="margin: 10px 0 10px 20px;">
+        <li>Overall statistics (average focus, best score, total time)</li>
+        <li>Visual chart showing focus scores over time</li>
+        <li>Individual session details with progress bars</li>
+      </ul>
+
+      <p style="margin-top: 20px; font-size: 12px; color: #666;">Sessions are stored in a database and persist across page reloads.</p>
+
       <button class="button button-primary" onclick="location.reload()">Back</button>
     </div>
   `;
