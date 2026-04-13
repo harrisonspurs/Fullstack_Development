@@ -4,6 +4,7 @@ import { initMenu, toggleMenu, closeMenu } from "./components/ui_components/menu
 import { initSessionInput } from "./components/ui_components/sessionInput.js";
 import { initImportSessions } from "./importSessions.js";
 import { createSessionsList } from "./components/ui_components/sessionTile.js";
+import { createStatsDisplay } from "./components/ui_components/sessionStats.js";
 import { getSessions } from "./apiRouter.js";
 
 async function initApp() {
@@ -46,8 +47,15 @@ async function loadSessions() {
   try {
     const sessions = await getSessions();
     console.log("got sessions from api:", sessions);
-    const sessionsList = createSessionsList(sessions);
     sessionsContainer.innerHTML = "";
+
+    // add stats display at top
+    const statsDisplay = createStatsDisplay(sessions);
+    if (statsDisplay) {
+      sessionsContainer.appendChild(statsDisplay);
+    }
+
+    const sessionsList = createSessionsList(sessions);
     sessionsContainer.appendChild(sessionsList);
   } catch (error) {
     console.error("Error loading sessions:", error);
