@@ -1,16 +1,19 @@
 #title-div {
-  background: #3b82f6;
-  color: white;
+  background: linear-gradient(135deg, #4A3A6B 0%, #6B5B95 100%);
+  color: #FFD700;
   padding: 16px 24px;
   margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 4px 6px rgba(240, 181, 0, 0.2);
 }
 
 #title-div h1 {
   margin: 0;
   font-size: 28px;
   flex: 1;
+  font-weight: bold;
 }
+
 

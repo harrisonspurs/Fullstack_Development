@@ -2,6 +2,10 @@
   max-width: 700px;
   margin: 20px auto;
   padding: 20px;
+  background: #3d3448;
+  border: 1px solid #4a4358;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .guide-section {
@@ -9,30 +13,41 @@
 }
 
 .guide-heading {
-  color: #333;
+  color: #FFD700;
   margin-bottom: 10px;
-  border-bottom: 2px solid #3b82f6;
+  border-bottom: 2px solid #20B2AA;
   padding-bottom: 8px;
 }
 
 .code-block {
-  background: #f0f0f0;
+  background: #2d1f3d;
   padding: 12px;
-  border-radius: 4px;
+  border-radius: 6px;
   overflow-x: auto;
   margin: 10px 0;
   font-size: 12px;
+  border: 1px solid #4a4358;
+  color: #F0F0F0;
 }
 
 .guide-container ol {
   margin-left: 20px;
+  color: #f0f0f0;
 }
 
 .guide-container li {
   margin-bottom: 8px;
+  color: #f0f0f0;
 }
 
 .guide-container a {
-  color: #3b82f6;
+  color: #FFD700;
   text-decoration: underline;
+  transition: color 0.2s ease;
 }
+
+.guide-container a:hover {
+  color: #40E0D0;
+}
+
+

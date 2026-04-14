@@ -4,7 +4,12 @@
   font-size: 24px;
   cursor: pointer;
   padding: 8px 12px;
-  color: white;
+  color: #FFD700;
+  transition: transform 0.2s ease;
+}
+
+.menu-btn:hover {
+  transform: scale(1.1);
 }
 
 .menu-panel {
@@ -13,10 +18,10 @@
   right: 0;
   width: 280px;
   height: 100vh;
-  background: white;
+  background: #3d3448;
   z-index: 1000;
   padding: 60px 20px 20px 20px;
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
 }
 
 .menu-list {
@@ -31,8 +36,15 @@
 
 .menu-link {
   text-decoration: none;
-  color: #333;
+  color: #20B2AA;
   font-size: 16px;
   padding: 8px 0;
   display: block;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
+
+.menu-link:hover {
+  color: #FFD700;
+}
+

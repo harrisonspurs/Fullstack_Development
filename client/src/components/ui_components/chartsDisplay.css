@@ -1,10 +1,14 @@
 .chart-wrapper {
   margin-bottom: 30px;
   padding: 20px;
-  background: white;
-  border: 1px solid #ddd;
+  background: #3d3448;
+  border: 1px solid #4a4358;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 #focus-chart {
   max-height: 300px;
 }
+
+
