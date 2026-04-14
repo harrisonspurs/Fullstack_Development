@@ -1,27 +1,16 @@
-.title-bar {
+#title-div {
   background: #3b82f6;
   color: white;
   padding: 16px 24px;
   margin-bottom: 24px;
-}
-
-.title-bar-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.title-bar h1 {
+#title-div h1 {
   margin: 0;
   font-size: 28px;
-}
-
-.menu-toggle {
-  background: none;
-  border: none;
-  color: white;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-size: 14px;
+  flex: 1;
 }
 

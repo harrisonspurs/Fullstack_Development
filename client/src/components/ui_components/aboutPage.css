@@ -1,0 +1,15 @@
+.about-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.about-container h2 {
+  margin-bottom: 20px;
+}
+
+.about-container p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #555;
+}

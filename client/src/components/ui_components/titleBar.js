@@ -1,15 +1,18 @@
+import { initMenu } from "./menu.js";
 import "./titleBar.css";
 
-export function initTitleBar() {
-  const titleBar = document.createElement("div");
-  titleBar.className = "title-bar";
+export function initTitleBar({ title, menuConfig }) {
+  const titleDiv = document.createElement("div");
+  titleDiv.id = "title-div";
 
-  titleBar.innerHTML = `
-    <div class="title-bar-content">
-      <h1>Study Focus Tracker</h1>
-      <button id="menu-toggle" class="menu-toggle">Menu</button>
-    </div>
-  `;
+  const h1 = document.createElement("h1");
+  h1.textContent = title;
 
-  return titleBar;
+  const { menuBtn, menuPanel } = initMenu({ menuConfig });
+
+  titleDiv.appendChild(h1);
+  titleDiv.appendChild(menuBtn);
+  titleDiv.appendChild(menuPanel);
+
+  return titleDiv;
 }

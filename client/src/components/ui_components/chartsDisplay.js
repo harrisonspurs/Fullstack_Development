@@ -13,11 +13,9 @@ export function createChartDisplay(sessions) {
 
   wrapper.appendChild(canvas);
 
-  // prepare data
   const labels = sessions.map((s) => formatChartDate(s.date));
   const scores = sessions.map((s) => s.score);
 
-  // create chart
   const ctx = canvas.getContext("2d");
   new Chart(ctx, {
     type: "line",
@@ -66,7 +64,6 @@ export function createChartDisplay(sessions) {
 }
 
 function formatChartDate(dateString) {
-  // short format for chart labels
   const date = new Date(dateString + "T00:00:00");
   const month = date.getMonth() + 1;
   const day = date.getDate();

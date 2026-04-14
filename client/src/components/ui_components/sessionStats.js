@@ -1,11 +1,8 @@
 export function createStatsDisplay(sessions) {
-  // calculate stats from sessions array
-
   if (!sessions || sessions.length === 0) {
-    return null; // no data yet
+    return null;
   }
 
-  // average focus score
   let totalScore = 0;
   let bestScore = 0;
   let totalDuration = 0;
@@ -21,12 +18,10 @@ export function createStatsDisplay(sessions) {
   const avgScore = (totalScore / sessions.length).toFixed(1);
   const sessionCount = sessions.length;
 
-  // convert total duration from seconds to hours and minutes
   const totalHours = Math.floor(totalDuration / 3600);
   const remainingSeconds = totalDuration % 3600;
   const totalMinutes = Math.floor(remainingSeconds / 60);
 
-  // create stats display
   const statsDiv = document.createElement("div");
   statsDiv.className = "stats-display";
   statsDiv.innerHTML = `

@@ -1,31 +1,42 @@
 import "./menu.css";
 
-export function initMenu() {
-  const menu = document.createElement("nav");
-  menu.id = "menu";
-  menu.className = "menu hidden";
+function handleMenuClick(event) {
+  const menuBtn = event.currentTarget;
+  const isOpen = menuBtn.textContent === "✕";
+  menuBtn.textContent = isOpen ? "≡" : "✕";
 
-  menu.innerHTML = `
-    <div class="menu-content">
-      <ul class="menu-list">
-        <li><a href="#" class="menu-link" data-section="sessions">Sessions</a></li>
-        <li><a href="#" class="menu-link" data-section="import">Import Session</a></li>
-        <li><a href="#" class="menu-link" data-section="guide">Guide</a></li>
-        <li><a href="#" class="menu-link" data-section="about">About</a></li>
-      </ul>
-      <button id="close-menu" class="close-menu">Close</button>
-    </div>
-  `;
-
-  return menu;
+  const menuPanel = document.getElementById("menu-panel");
+  menuPanel.style.display = isOpen ? "none" : "block";
 }
 
-export function toggleMenu() {
-  const menu = document.getElementById("menu");
-  menu.classList.toggle("hidden");
-}
+export function initMenu({ menuConfig }) {
+  const menuBtn = document.createElement("button");
+  menuBtn.id = "menu-btn";
+  menuBtn.className = "menu-btn";
+  menuBtn.textContent = menuConfig.menuIcon || "≡";
+  menuBtn.addEventListener("click", handleMenuClick);
 
-export function closeMenu() {
-  const menu = document.getElementById("menu");
-  menu.classList.add("hidden");
+  const menuPanel = document.createElement("div");
+  menuPanel.id = "menu-panel";
+  menuPanel.className = "menu-panel";
+  menuPanel.style.display = "none";
+
+  const menuList = document.createElement("ul");
+  menuList.className = "menu-list";
+
+  if (menuConfig.menuItems) {
+    menuConfig.menuItems.forEach((item) => {
+      const li = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = item.href;
+      link.textContent = item.text;
+      link.className = "menu-link";
+      li.appendChild(link);
+      menuList.appendChild(li);
+    });
+  }
+
+  menuPanel.appendChild(menuList);
+
+  return { menuBtn, menuPanel };
 }

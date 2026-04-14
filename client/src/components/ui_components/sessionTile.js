@@ -8,7 +8,6 @@ export function createSessionTile(session) {
   const focusPercentage = session.score;
   const durationMinutes = Math.round(session.duration / 60);
   const focusedMinutes = Math.round(session.focused / 60);
-  // const streakPercentage = focusedMinutes > 0 ? (focusedMinutes / durationMinutes) * 100 : 0;
   const streakPercentage = (focusedMinutes / durationMinutes) * 100;
 
   tile.innerHTML = `
@@ -50,8 +49,8 @@ export function createSessionsList(sessions) {
   if (!sessions || sessions.length === 0) {
     list.innerHTML = `
       <div class="empty-state">
-        <p>No sessions recorded yet.</p>
-        <p class="empty-state-hint">Add a session to get started!</p>
+        <p>No sessions yet.</p>
+        <p class="empty-state-hint">Import a session to get started!</p>
       </div>
     `;
     return list;
@@ -66,7 +65,6 @@ export function createSessionsList(sessions) {
 }
 
 function formatDate(dateString) {
-  // format the date string to readable format
   const date = new Date(dateString + "T00:00:00");
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

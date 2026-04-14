@@ -1,0 +1,38 @@
+.guide-container {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.guide-section {
+  margin-bottom: 30px;
+}
+
+.guide-heading {
+  color: #333;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 8px;
+}
+
+.code-block {
+  background: #f0f0f0;
+  padding: 12px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 10px 0;
+  font-size: 12px;
+}
+
+.guide-container ol {
+  margin-left: 20px;
+}
+
+.guide-container li {
+  margin-bottom: 8px;
+}
+
+.guide-container a {
+  color: #3b82f6;
+  text-decoration: underline;
+}
