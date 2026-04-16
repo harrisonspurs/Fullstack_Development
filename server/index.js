@@ -68,11 +68,6 @@ app.get("/getSessions", (req, res) => {
 // serve frontend in production
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-// fallback to index.html for SPA routing
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
-
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
 });
