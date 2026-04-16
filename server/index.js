@@ -1,16 +1,27 @@
 import express from "express";
 import dotenv from "dotenv";
 import Database from "better-sqlite3";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 app.use(express.json());
 
 // cors stuff
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  const allowedOrigins = ["http://localhost:5173", "http://localhost:3000"];
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin) || !origin) {
+    res.header("Access-Control-Allow-Origin", origin || "*");
+  } else {
+    res.header("Access-Control-Allow-Origin", "*");
+  }
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
@@ -54,6 +65,15 @@ app.get("/getSessions", (req, res) => {
   res.json({ success: true, data: sessions });
 });
 
+// serve frontend in production
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+// fallback to index.html for SPA routing
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
+
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
 });
+
