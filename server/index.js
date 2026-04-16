@@ -69,7 +69,7 @@ app.get("/getSessions", (req, res) => {
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
 // fallback to index.html for SPA routing
-app.get("*", (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
