@@ -19,15 +19,42 @@
   padding-bottom: 8px;
 }
 
+.code-block-wrapper {
+  position: relative;
+  margin: 10px 0;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  background: #F0B500;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.copy-btn:hover {
+  background: #FFD700;
+  transform: scale(1.05);
+}
+
 .code-block {
   background: #2d1f3d;
   padding: 12px;
   border-radius: 6px;
   overflow-x: auto;
-  margin: 10px 0;
+  margin: 0;
   font-size: 12px;
   border: 1px solid #4a4358;
   color: #F0F0F0;
+  padding-right: 70px;
 }
 
 .guide-container ol {
@@ -49,5 +76,6 @@
 .guide-container a:hover {
   color: #40E0D0;
 }
+
 
 

@@ -28,9 +28,6 @@ function initApp() {
   contentDiv.id = "content-div";
   contentDiv.className = "container";
 
-  // const aboutData = fetchAboutInfo();
-  // render about stuff
-
   const about = aboutPage();
   contentDiv.appendChild(about);
 

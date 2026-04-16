@@ -25,30 +25,44 @@ export function guidePage() {
     return section;
   }
 
-  container.appendChild(addSection("Overview", "tracks your focus using ai"));
+  function createCodeBlock(code) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "code-block-wrapper";
+
+    const pre = document.createElement("pre");
+    pre.textContent = code;
+    pre.className = "code-block";
+
+    const copyBtn = document.createElement("button");
+    copyBtn.textContent = "Copy";
+    copyBtn.className = "copy-btn";
+    copyBtn.onclick = () => {
+      navigator.clipboard.writeText(code);
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => {
+        copyBtn.textContent = "Copy";
+      }, 2000);
+    };
+
+    wrapper.appendChild(copyBtn);
+    wrapper.appendChild(pre);
+
+    return wrapper;
+  }
 
   const step1 = addSection("Step 1: Download Project", "First, download the AI Tracker project from GitHub. You can either clone it using the link below or download it directly from the repository.");
   const gitLink = document.createElement("p");
   gitLink.innerHTML = '<a href="https://github.com/harrisonspurs/Ai_study_tracking.git" target="_blank">github.com/harrisonspurs/Ai_study_tracking.git</a>';
   step1.appendChild(gitLink);
-  const gitCmd = document.createElement("pre");
-  gitCmd.textContent = "git clone https://github.com/harrisonspurs/Ai_study_tracking.git";
-  gitCmd.className = "code-block";
-  step1.appendChild(gitCmd);
+  step1.appendChild(createCodeBlock("git clone https://github.com/harrisonspurs/Ai_study_tracking.git"));
   container.appendChild(step1);
 
   const step2 = addSection("Step 2: Setup Environment", "Run this code in your terminal to create a virtual environment, activate it, and download all the project dependencies:");
-  const setupCmd = document.createElement("pre");
-  setupCmd.textContent = "python -m venv venv\nvenv\\Scripts\\activate\npip install -r requirements.txt";
-  setupCmd.className = "code-block";
-  step2.appendChild(setupCmd);
+  step2.appendChild(createCodeBlock("python -m venv venv\nvenv\\Scripts\\activate\npip install -r requirements.txt"));
   container.appendChild(step2);
 
   const step3 = addSection("Step 3: Run the AI Tracker", "Start the AI session tracker by running this command in your terminal. The tracker will record your focus data while you study.");
-  const runCmd = document.createElement("pre");
-  runCmd.textContent = "python main.py";
-  runCmd.className = "code-block";
-  step3.appendChild(runCmd);
+  step3.appendChild(createCodeBlock("python main.py"));
   const step3Text = document.createElement("p");
   step3Text.textContent = "Study normally in your application. Press ESC when you're done to end the session.";
   step3.appendChild(step3Text);
@@ -67,4 +81,6 @@ export function guidePage() {
 
   return container;
 }
+
+
 

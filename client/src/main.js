@@ -41,9 +41,6 @@ const loadSessions = async (container) => {
     const response = await getSessions();
     const { data } = response;
 
-    // const { data } = await getSessions();
-    // console.log("debugging:", data);
-
     const statsDisplay = createStatsDisplay(data);
     if (statsDisplay) {
       container.appendChild(statsDisplay);

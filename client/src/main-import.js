@@ -31,8 +31,6 @@ function initApp() {
   // import form component
   const form = importForm({
     onImportSuccess: () => {
-      // redirect back after import success
-      // setTimeout(() => window.location.href = "/", 500);
       window.location.href = "/";
     },
   });

@@ -56,7 +56,8 @@ export function createSessionsList(sessions) {
     return list;
   }
 
-  sessions.forEach((session) => {
+  // show newest sessions first
+  sessions.reverse().forEach((session) => {
     const tile = createSessionTile(session);
     list.appendChild(tile);
   });
