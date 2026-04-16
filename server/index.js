@@ -65,8 +65,8 @@ app.get("/getSessions", (req, res) => {
   res.json({ success: true, data: sessions });
 });
 
-// serve frontend in production
-app.use(express.static(path.join(__dirname, "../client/dist")));
+// serve frontend pages
+app.use(express.static(path.join(__dirname, "../client/src/pages")));
 
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
