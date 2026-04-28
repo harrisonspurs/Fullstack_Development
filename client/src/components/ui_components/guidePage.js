@@ -50,6 +50,25 @@ export function guidePage() {
     return wrapper;
   }
 
+  // Add video intro
+  const videoSection = document.createElement("div");
+  videoSection.className = "guide-section";
+  const videoTitle = document.createElement("h3");
+  videoTitle.textContent = "Video Walkthrough";
+  videoTitle.className = "guide-heading";
+  videoSection.appendChild(videoTitle);
+
+  const videoFrame = document.createElement("iframe");
+  videoFrame.width = "100%";
+  videoFrame.height = "400";
+  videoFrame.src = "https://www.youtube.com/embed/Burm7hk2XGE";
+  videoFrame.title = "AI Study Focus Tracker Demo";
+  videoFrame.frameBorder = "0";
+  videoFrame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-fullscreen";
+  videoFrame.allowFullscreen = true;
+  videoSection.appendChild(videoFrame);
+  container.appendChild(videoSection);
+
   const step1 = addSection("Step 1: Download Project", "First, download the AI Tracker project from GitHub. You can either clone it using the link below or download it directly from the repository.");
   const gitLink = document.createElement("p");
   gitLink.innerHTML = '<a href="https://github.com/harrisonspurs/Ai_study_tracking.git" target="_blank">github.com/harrisonspurs/Ai_study_tracking.git</a>';
