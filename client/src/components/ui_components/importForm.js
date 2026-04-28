@@ -16,7 +16,7 @@ export function importForm({ onImportSuccess }) {
   const nameInput = document.createElement("input");
   nameInput.id = "import-name";
   nameInput.type = "text";
-  nameInput.placeholder = "e.g., John";
+  nameInput.placeholder = "e.g., Harrison";
   nameInput.className = "import-input";
 
   const instructions = document.createElement("p");
