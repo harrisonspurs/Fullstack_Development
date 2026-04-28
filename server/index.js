@@ -33,6 +33,7 @@ const db = new Database("sessions.db");
 db.prepare(
   `CREATE TABLE IF NOT EXISTS sessions(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    userName TEXT,
     date TEXT NOT NULL,
     duration INTEGER NOT NULL,
     focused INTEGER NOT NULL,
@@ -43,15 +44,15 @@ db.prepare(
 console.log("database ready");
 
 app.post("/addSession", (req, res) => {
-  const { date, duration, focused, score } = req.body;
+  const { date, duration, focused, score, userName } = req.body;
 
-  console.log("adding session:", { date, duration, focused, score });
+  console.log("adding session:", { userName, date, duration, focused, score });
 
   // insert into db
   db.prepare(`
-    INSERT INTO sessions (date, duration, focused, score)
-    VALUES (?, ?, ?, ?)
-  `).run(date, duration, focused, score);
+    INSERT INTO sessions (userName, date, duration, focused, score)
+    VALUES (?, ?, ?, ?, ?)
+  `).run(userName, date, duration, focused, score);
 
   console.log("session added");
 

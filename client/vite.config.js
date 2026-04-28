@@ -19,10 +19,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        index: resolve(__dirname, "src/pages/index.html"),
-        import: resolve(__dirname, "src/pages/import.html"),
-        guide: resolve(__dirname, "src/pages/guide.html"),
-        about: resolve(__dirname, "src/pages/about.html"),
+        index: resolve(__dirname, "index.html"),
+        import: resolve(__dirname, "import.html"),
+        guide: resolve(__dirname, "guide.html"),
+        about: resolve(__dirname, "about.html"),
       },
     },
   },

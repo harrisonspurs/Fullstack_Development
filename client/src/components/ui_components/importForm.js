@@ -8,6 +8,17 @@ export function importForm({ onImportSuccess }) {
   const title = document.createElement("h2");
   title.textContent = "Import Session";
 
+  const nameLabel = document.createElement("label");
+  nameLabel.htmlFor = "import-name";
+  nameLabel.textContent = "Your name (optional):";
+  nameLabel.className = "import-label";
+
+  const nameInput = document.createElement("input");
+  nameInput.id = "import-name";
+  nameInput.type = "text";
+  nameInput.placeholder = "e.g., John";
+  nameInput.className = "import-input";
+
   const instructions = document.createElement("p");
   instructions.textContent = "paste json here:";
   instructions.className = "import-instructions";
@@ -28,6 +39,7 @@ export function importForm({ onImportSuccess }) {
   button.addEventListener("click", async () => {
     try {
       const jsonText = textarea.value.trim();
+      const userName = nameInput.value.trim() || null;
 
       if (!jsonText) {
         message.textContent = "paste json first";
@@ -43,13 +55,15 @@ export function importForm({ onImportSuccess }) {
         duration: data.duration_seconds,
         focused: data.focused_seconds,
         score: data.focus_score,
+        userName: userName,
       };
 
       await addSession(
         session.date,
         session.duration,
         session.focused,
-        session.score
+        session.score,
+        session.userName
       );
 
       message.textContent = "imported!";
@@ -57,6 +71,7 @@ export function importForm({ onImportSuccess }) {
       message.style.display = "block";
 
       textarea.value = "";
+      nameInput.value = "";
 
       if (onImportSuccess) {
         setTimeout(() => {
@@ -72,6 +87,8 @@ export function importForm({ onImportSuccess }) {
   });
 
   container.appendChild(title);
+  container.appendChild(nameLabel);
+  container.appendChild(nameInput);
   container.appendChild(instructions);
   container.appendChild(textarea);
   container.appendChild(button);

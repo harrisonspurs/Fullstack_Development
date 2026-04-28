@@ -10,9 +10,14 @@ export function createSessionTile(session) {
   const focusedMinutes = Math.round(session.focused / 60);
   const streakPercentage = (focusedMinutes / durationMinutes) * 100;
 
+  const userNameDisplay = session.userName ? `<p class="session-user">${session.userName}</p>` : '';
+
   tile.innerHTML = `
     <div class="session-tile-header">
-      <h3 class="session-date">${formatDate(session.date)}</h3>
+      <div>
+        <h3 class="session-date">${formatDate(session.date)}</h3>
+        ${userNameDisplay}
+      </div>
       <div class="session-score">
         <span class="score-value">${focusPercentage.toFixed(1)}%</span>
         <span class="score-label">Focus</span>

@@ -22,7 +22,7 @@
 .session-tile-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 16px;
   padding-bottom: 12px;
   border-bottom: 1px solid #4a4358;
@@ -33,6 +33,13 @@
   font-size: 16px;
   font-weight: bold;
   color: #F0F0F0;
+}
+
+.session-user {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  color: #b0b0b0;
+  font-style: italic;
 }
 
 .session-score {
