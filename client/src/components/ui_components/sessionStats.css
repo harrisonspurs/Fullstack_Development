@@ -1,8 +1,8 @@
 .stats-display {
   margin-bottom: 30px;
   padding: 20px;
-  background: #0d0d0d;
-  border: 1px solid #1a1a1a;
+  background: #131313;
+  border: 1px solid #252525;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
@@ -23,7 +23,7 @@
 }
 
 .stat-item:hover {
-  background: #1a1a1a;
+  background: #252525;
 }
 
 .stat-label {

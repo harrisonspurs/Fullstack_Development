@@ -2,8 +2,8 @@
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
-  background: #0d0d0d;
-  border: 1px solid #1a1a1a;
+  background: #131313;
+  border: 1px solid #252525;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
@@ -20,9 +20,9 @@
   width: 100%;
   padding: 10px 12px;
   margin-bottom: 15px;
-  border: 1px solid #1a1a1a;
+  border: 1px solid #252525;
   border-radius: 6px;
-  background-color: #0f0f0f;
+  background-color: #131313;
   color: #ffffff;
   font-size: 14px;
   transition: border-color 0.2s ease;
@@ -44,13 +44,13 @@
   width: 100%;
   min-height: 200px;
   padding: 12px;
-  border: 1px solid #1a1a1a;
+  border: 1px solid #252525;
   border-radius: 6px;
   font-family: monospace;
   font-size: 12px;
   margin-bottom: 10px;
   transition: border-color 0.2s ease;
-  background-color: #0f0f0f;
+  background-color: #131313;
   color: #ffffff;
 }
 
