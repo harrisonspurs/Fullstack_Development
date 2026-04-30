@@ -8,31 +8,31 @@ export function aboutPage() {
   h2.textContent = "About";
 
   const p1 = document.createElement("p");
-  p1.textContent = "Study Focus Tracker helps you monitor your focus during study sessions.";
+  p1.textContent = "Track how focused you actually are during study sessions. This application is built to help you see how focused you really are when you're studying.";
 
   const h3_1 = document.createElement("h3");
   h3_1.textContent = "How It Works";
 
   const p2 = document.createElement("p");
-  p2.textContent = "The AI Study Tracker uses your webcam to detect when you're focused on your work. It tracks your face position and detects when you get distracted or pick up your phone. Data is collected locally and exported as JSON.";
+  p2.textContent = "The tracker uses your webcam to see when you're actually focused on your work vs when you're getting distracted or checking your phone. Everything runs locally on your computer so your data never leaves your device. It all gets exported as JSON so you can import it here and see your stats.";
 
   const h3_2 = document.createElement("h3");
   h3_2.textContent = "Privacy";
 
   const p3 = document.createElement("p");
-  p3.textContent = "Your webcam data is processed locally on your computer - nothing is sent to external servers. The tracker detects face position and phone presence but doesn't store images or video. You have full control - quit anytime by pressing ESC.";
+  p3.textContent = "All the processing happens on your computer. No images or videos get stored or sent anywhere. The tracker just detects your face and phone, nothing else. You can quit anytime by hitting ESC if you want to stop.";
 
   const h3_3 = document.createElement("h3");
   h3_3.textContent = "Developer Mode";
 
   const p4 = document.createElement("p");
-  p4.textContent = "While using the tracker, press 'C' to toggle developer mode. This shows the camera feed and displays how the AI is detecting your focus and distractions in real-time.";
+  p4.textContent = "While the tracker is running, press 'C' to turn on developer mode. You'll see the camera feed and how the tracker is actually detecting your focus and distractions in real-time. Pretty cool to see how it works.";
 
   const h3_4 = document.createElement("h3");
   h3_4.textContent = "Data";
 
   const p5 = document.createElement("p");
-  p5.textContent = "After each session, the tracker saves your focus data (duration, focus time, focus score) as a JSON file. You can then import this data here to view your statistics and track progress over time.";
+  p5.textContent = "After each session, your focus data gets saved as JSON (duration, how long you stayed focused, and your focus score). You can import those files here to see all your stats and track how you're doing over time.";
 
   container.appendChild(h2);
   container.appendChild(p1);

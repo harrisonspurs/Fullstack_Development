@@ -54,7 +54,7 @@ app.post("/addSession", (req, res) => {
     VALUES (?, ?, ?, ?, ?)
   `).run(userName, date, duration, focused, score);
 
-  console.log("session added");
+  console.log("session has been added");
 
   res.json({ success: true, data: req.body });
 });
