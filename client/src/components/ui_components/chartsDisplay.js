@@ -25,14 +25,14 @@ export function createChartDisplay(sessions) {
         {
           label: "Focus Score",
           data: scores,
-          borderColor: "#20B2AA",
-          backgroundColor: "rgba(32, 178, 170, 0.2)",
+          borderColor: "#39ff14",
+          backgroundColor: "rgba(57, 255, 20, 0.15)",
           borderWidth: 2,
           fill: true,
           tension: 0.3,
           pointRadius: 4,
-          pointBackgroundColor: "#FFD700",
-          pointBorderColor: "#3d3448",
+          pointBackgroundColor: "#39ff14",
+          pointBorderColor: "#131313",
           pointBorderWidth: 2,
         },
       ],
@@ -44,6 +44,12 @@ export function createChartDisplay(sessions) {
         legend: {
           display: true,
           position: "top",
+          labels: {
+            color: "#ffffff",
+            font: {
+              size: 12,
+            },
+          },
         },
       },
       scales: {
@@ -51,9 +57,21 @@ export function createChartDisplay(sessions) {
           beginAtZero: true,
           max: 100,
           ticks: {
+            color: "#b0b0b0",
             callback: function (value) {
               return value + "%";
             },
+          },
+          grid: {
+            color: "rgba(57, 255, 20, 0.1)",
+          },
+        },
+        x: {
+          ticks: {
+            color: "#b0b0b0",
+          },
+          grid: {
+            color: "rgba(57, 255, 20, 0.05)",
           },
         },
       },
