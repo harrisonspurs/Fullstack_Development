@@ -6,8 +6,8 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #2d1f3d;
-  color: #f0f0f0;
+  background-color: #0f0f0f;
+  color: #ffffff;
   line-height: 1.6;
 }
 
@@ -31,42 +31,42 @@ body {
 }
 
 .button-primary {
-  background-color: #F0B500;
-  color: #1a1a1a;
+  background-color: #39ff14;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .button-primary:hover {
-  background-color: #FFD700;
+  background-color: #39ff14;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(240, 181, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(57, 255, 20, 0.4);
 }
 
 .card {
-  background-color: #3d3448;
-  border: 1px solid #4a4358;
+  background-color: #0d0d0d;
+  border: 1px solid #1a1a1a;
   padding: 16px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 input,
 textarea {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #4a4358;
+  border: 1px solid #1a1a1a;
   border-radius: 6px;
   font-family: inherit;
   font-size: 14px;
   transition: border-color 0.2s ease;
-  background-color: #2d1f3d;
-  color: #f0f0f0;
+  background-color: #0d0d0d;
+  color: #ffffff;
 }
 
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: #F0B500;
-  box-shadow: 0 0 0 3px rgba(240, 181, 0, 0.2);
+  border-color: #39ff14;
+  box-shadow: 0 0 0 3px rgba(57, 255, 20, 0.2);
 }
 
