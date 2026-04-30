@@ -1,3 +1,4 @@
+// fetch all sessions from the backend
 export async function getSessions() {
   const url = "/getSessions";
   const response = await fetch(url);
@@ -5,6 +6,7 @@ export async function getSessions() {
   return data;
 }
 
+// send a new session to the backend
 export async function addSession(date, duration, focused, score, userName) {
   const url = "/addSession";
   const response = await fetch(url, {

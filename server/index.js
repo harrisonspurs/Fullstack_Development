@@ -4,15 +4,18 @@ import Database from "better-sqlite3";
 import path from "path";
 import { fileURLToPath } from "url";
 
+// load env variables
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// need this for es modules
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// parse json from requests
 app.use(express.json());
 
-// cors stuff
+// allow requests from frontend
 app.use((req, res, next) => {
   const allowedOrigins = ["http://localhost:5173", "http://localhost:3000"];
   const origin = req.headers.origin;
@@ -27,9 +30,10 @@ app.use((req, res, next) => {
   next();
 });
 
+// set up database
 const db = new Database("sessions.db");
 
-// make table if not there
+// create table for storing sessions
 db.prepare(
   `CREATE TABLE IF NOT EXISTS sessions(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,12 +47,13 @@ db.prepare(
 
 console.log("database ready");
 
+// add a session when user imports
 app.post("/addSession", (req, res) => {
   const { date, duration, focused, score, userName } = req.body;
 
   console.log("adding session:", { userName, date, duration, focused, score });
 
-  // insert into db
+  // save to database
   db.prepare(`
     INSERT INTO sessions (userName, date, duration, focused, score)
     VALUES (?, ?, ?, ?, ?)
@@ -59,6 +64,7 @@ app.post("/addSession", (req, res) => {
   res.json({ success: true, data: req.body });
 });
 
+// get all sessions for the dashboard
 app.get("/getSessions", (req, res) => {
   console.log("getting all sessions");
   const sessions = db.prepare("SELECT * FROM sessions").all();
@@ -66,9 +72,10 @@ app.get("/getSessions", (req, res) => {
   res.json({ success: true, data: sessions });
 });
 
-// serve frontend
+// serve the frontend
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
+// start the server
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
 });
